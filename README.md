@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+## 🚀 Auth0 Nextjs+NextAuth tabanlı kimlik doğrulama
 
-First, run the development server:
+- **Auth0 Entegrasyonu**
+  - Güvenli kimlik doğrulama
+  - JWT token yönetimi
+  - Rol bazlı yetkilendirme (Admin/User)
 
+- **NextAuth.js**
+  - Session yönetimi
+  - JWT 
+
+- **Güvenlik**
+  - Middleware ile sayfa koruması
+  - Rol bazlı erişim kontrolü
+  - M2M (Machine to Machine) uygulama desteği
+
+- **Modern UI/UX**
+  - Responsive tasarım
+  - Tailwind CSS
+  - Animasyonlar ve geçişler
+
+## 🛠️ Teknolojiler
+
+- Next.js 15
+- React 19
+- TypeScript
+- Auth0
+- NextAuth.js
+- Tailwind CSS
+- SOLID Prensipleri
+
+## 📦 Kurulum
+
+1. Bağımlılıkları yükleyin:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+```
+2. `.env` dosyasını oluşturun:
+```env
+AUTH0_CLIENT_ID=your_client_id
+AUTH0_CLIENT_SECRET=your_client_secret
+AUTH0_ISSUER=your_auth0_domain
+AUTH0_M2M_CLIENT_ID=your_m2m_client_id
+AUTH0_M2M_CLIENT_SECRET=your_m2m_client_secret
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your_nextauth_secret
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Geliştirme sunucusunu başlatın:
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔐 Auth0 Kurulumu
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Auth0 Dashboard'da yeni bir uygulama oluşturun
+2. M2M uygulaması oluşturun ve gerekli izinleri verin:
+   - `read:users`
+   - `read:user_idp_tokens`
+   - `read:roles`
+3. Admin rolü oluşturun ve kullanıcılara atayın
 
-## Learn More
+## 🏗️ Proje Yapısı
 
-To learn more about Next.js, take a look at the following resources:
+```
+├── app/
+│   ├── (auth)/           # Kimlik doğrulama sayfaları
+│   ├── admin/           # Admin paneli
+│   ├── api/             # API rotaları
+│   ├── lib/             # Yardımcı fonksiyonlar ve servisler
+│   └── user/       # Kullanıcı login olduğunda rol user ise bilgileri gözüken sayfa
+├── components/          # Yeniden kullanılabilir bileşenler
+├── providers/          # Context providers
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🔄 İş Akışı
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Kullanıcı giriş yapar
+2. Auth0 kimlik doğrulaması yapılır
+3. JWT token oluşturulur
+4. NextAuth.js session yönetimi
+5. Middleware ile sayfa koruması
+6. Rol bazlı erişim kontrolü
