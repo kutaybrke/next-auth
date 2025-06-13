@@ -5,6 +5,12 @@ export interface IAuthService {
   validateUserAccess(user: User, requiredRole: UserRole): boolean;
 }
 
+interface Auth0Role {
+  name: string;
+  description?: string;
+  id: string;
+}
+
 export class AuthService implements IAuthService {
   private static instance: AuthService;
   private readonly AUTH0_DOMAIN: string;
@@ -68,7 +74,7 @@ export class AuthService implements IAuthService {
       const roles = await rolesResponse.json();
       
       // Admin rolü varsa ADMIN, yoksa USER döndür
-      return roles.some((role: any) => role.name === 'admin') 
+      return roles.some((role: Auth0Role) => role.name === 'admin') 
         ? UserRole.ADMIN 
         : UserRole.USER;
     } catch (error) {

@@ -4,9 +4,9 @@ import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { useState } from 'react';
 import LoadingComponent from '@/components/loading';
-import { FaUser, FaShieldAlt } from 'react-icons/fa';
+import { FaUser, FaShieldAlt, FaCog } from 'react-icons/fa';
 
-export default function AdminPage() {
+export default function DashboardPage() {
   const { data: session } = useSession();
   const [isSigningOut, setIsSigningOut] = useState(false);
 
@@ -30,30 +30,22 @@ export default function AdminPage() {
           <div className="flex justify-between items-center mb-8">
             <div>
               <h1 className="text-3xl font-bold text-gray-900">
-                Admin Paneli
+                Hoş Geldiniz
               </h1>
-              <p className="text-gray-600 mt-1">Yönetim Kontrol Merkezi</p>
+              <p className="text-gray-600 mt-1">Kullanıcı Paneli</p>
             </div>
-            <div className="flex items-center space-x-4">
-              <Link
-                href="/dashboard"
-                className="px-4 py-2 text-indigo-600 hover:text-indigo-700 font-medium transition-colors duration-200"
-              >
-                Kullanıcı Paneline Dön
-              </Link>
-              <button
-                onClick={handleSignOut}
-                className="px-6 py-2.5 bg-indigo-600 text-white font-medium rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200"
-              >
-                Çıkış Yap
-              </button>
-            </div>
+            <button
+              onClick={handleSignOut}
+              className="px-6 py-2.5 bg-indigo-600 text-white font-medium rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200"
+            >
+              Çıkış Yap
+            </button>
           </div>
-
+          
           {session?.user && (
             <div className="space-y-6">
               <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6 border border-indigo-100">
-                <h2 className="text-xl font-semibold text-gray-800 mb-4">Admin Bilgileri</h2>
+                <h2 className="text-xl font-semibold text-gray-800 mb-4">Kullanıcı Bilgileri</h2>
                 <div className="space-y-3">
                   <div className="flex items-center space-x-3">
                     <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center">
@@ -75,6 +67,18 @@ export default function AdminPage() {
                   </div>
                 </div>
               </div>
+
+              {session.user.role === 'ADMIN' && (
+                <div className="mt-6">
+                  <Link 
+                    href="/admin"
+                    className="inline-flex items-center px-6 py-3 bg-green-600 text-white font-medium rounded-lg shadow-md hover:from-green-600 hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all duration-200"
+                  >
+                    <FaCog className="w-5 h-5 mr-2" />
+                    Admin Paneline Git
+                  </Link>
+                </div>
+              )}
             </div>
           )}
         </div>

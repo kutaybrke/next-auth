@@ -10,7 +10,7 @@ export default function LoginForm() {
   const handleLogin = async () => {
     try {
       setIsLoading(true);
-      await signIn('auth0', { callbackUrl: '/user' });
+      await signIn('auth0', { callbackUrl: '/dashboard' });
     } catch (error) {
       console.error('Login error:', error);
     } finally {

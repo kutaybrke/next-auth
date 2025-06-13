@@ -6,12 +6,12 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
 export default function HomePage() {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const router = useRouter();
 
   useEffect(() => {
     if (status === 'authenticated') {
-      router.push('/user');
+      router.push('/dashboard');
     } else if (status === 'unauthenticated') {
       router.push('/login');
     }
@@ -20,7 +20,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="text-center">
-   <LoadingComponent/>
+        <LoadingComponent/>
       </div>
     </div>
   );

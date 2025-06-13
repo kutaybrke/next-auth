@@ -14,7 +14,7 @@ export async function middleware(request: NextRequest) {
     request.nextUrl.pathname.startsWith(path)
   );
 
- // Kimlik doğrulaması gerektiren yollar
+  // Kimlik doğrulaması gerektiren yollar
   const isProtectedPath = !isPublicPath;
 
   if (isProtectedPath && !isAuth) {
@@ -23,7 +23,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
- // Rol tabanlı erişim
+  // Rol tabanlı erişim
   if (isAuth && token) {
     const authService = AuthService.getInstance();
     const user = {

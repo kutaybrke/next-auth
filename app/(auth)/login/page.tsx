@@ -3,6 +3,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import LoginForm from './components/LoginForm';
+import LoadingComponent from '@/components/loading';
 
 export default function LoginPage() {
   const { data: session, status } = useSession();
@@ -13,7 +14,7 @@ export default function LoginPage() {
       if (session?.user?.role === 'ADMIN') {
         router.push('/admin');
       } else {
-        router.push('/user');
+        router.push('/dashboard');
       }
     }
   }, [status, session, router]);
@@ -22,7 +23,7 @@ export default function LoginPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-semibold text-gray-900">Yükleniyor...</h1>
+        <LoadingComponent/>
         </div>
       </div>
     );

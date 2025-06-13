@@ -3,7 +3,6 @@
 
 - **Auth0 Entegrasyonu**
   - Güvenli kimlik doğrulama
-  - JWT token yönetimi
   - Rol bazlı yetkilendirme (Admin/User)
 
 - **NextAuth.js**
@@ -54,7 +53,7 @@ npm run dev
 
 ## 🔐 Auth0 Kurulumu
 
-1. Auth0 Dashboard'da yeni bir uygulama oluşturun
+1. Auth0 Dashboard'da yeni bir uygulama oluşturun (Single Page Applications)
 2. M2M uygulaması oluşturun ve gerekli izinleri verin:
    - `read:users`
    - `read:user_idp_tokens`
@@ -69,7 +68,7 @@ npm run dev
 │   ├── admin/           # Admin paneli
 │   ├── api/             # API rotaları
 │   ├── lib/             # Yardımcı fonksiyonlar ve servisler
-│   └── user/       # Kullanıcı login olduğunda rol user ise bilgileri gözüken sayfa
+│   └── dashboard/       # Kullanıcı login olduğunda rol bilgileri gözüken sayfa
 ├── components/          # Yeniden kullanılabilir bileşenler
 ├── providers/          # Context providers
 
